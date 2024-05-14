@@ -378,8 +378,15 @@ function rpgtimeline_usercp() {
 				  "timesort" => $sort
 				);
 				
+				$checker = $db->fetch_field($db->query("SELECT timeid FROM ".TABLE_PREFIX."rpgtimeline WHERE timeuid = '$check' AND timesort = '$sort'"), "timeid");
+				$sort--;
+				$new_record_old = array(
+				  "timesort" => $sort
+				);
+				
 				if($mybb->user['uid'] == $check){
 					$db->update_query("rpgtimeline", $new_record, "timeid = '$moveup'");
+					$db->update_query("rpgtimeline", $new_record_old, "timeid = '$checker'");
 					redirect("usercp.php?action=rpgtimeline");
 				};
 			}  
@@ -393,10 +400,18 @@ function rpgtimeline_usercp() {
 				  "timesort" => $sort
 				);
 				
+				$checker = $db->fetch_field($db->query("SELECT timeid FROM ".TABLE_PREFIX."rpgtimeline WHERE timeuid = '$check' AND timesort = '$sort'"), "timeid");
+				$sort++;
+				$new_record_old = array(
+				  "timesort" => $sort
+				);
+				
 				if($mybb->user['uid'] == $check){
 					$db->update_query("rpgtimeline", $new_record, "timeid = '$movedown'");
+					$db->update_query("rpgtimeline", $new_record_old, "timeid = '$checker'");
 					redirect("usercp.php?action=rpgtimeline");
 				};
+				
 			}
 			
 			$delete = $mybb->get_input('timedel');
@@ -459,8 +474,8 @@ function rpgtimeline_usercp() {
 				}
 				
 				
-				if($timesort == "1"){$sorttop = "";}else{$sorttop = "<a href=\"/usercp.php?action=rpgtimeline&moveup={$time['timeid']}\">↑</a>";};
-				if($timesort == $timecounts){$sortbottom = "";}else{$sortbottom = "<a href=\"/usercp.php?action=rpgtimeline&movedown={$time['timeid']}\">↓</a>";};
+				if($timesort == "1"){$sorttop = "";}else{$sorttop = "<a href=\"/usercp.php?action=rpgtimeline&movedown={$time['timeid']}\">↑</a>";}; 
+				if($timesort >= $timecounts){$sortbottom = "";}else{$sortbottom = "<a href=\"/usercp.php?action=rpgtimeline&moveup={$time['timeid']}\">↓</a>";};
 				
 				
 				eval("\$timeline_events .= \"".$templates->get("rpgtimeline_usercp_event")."\";");
