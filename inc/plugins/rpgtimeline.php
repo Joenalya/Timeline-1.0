@@ -67,7 +67,7 @@ function rpgtimeline_install()
         	'title' => 'Absätze bearbeiten?',
         	'description' => 'Sollen User in der Lage sein, nach dem WoB noch Absätze zu bearbeiten?',
 			'optionscode'	=> 'yesno',
-        	'value' => '1', // Default
+        	'value' => '0', // Default
         	'disporder' => 2
     	),	
     	'rpgtimelinecp_grp' => array(
