@@ -14,7 +14,7 @@ $plugins->add_hook ('build_friendly_wol_location_end', 'rpgtimeline_location_act
 function rpgtimeline_info()
 {
     return array(
-        "name"            => "Timeline (RPG-Plugin)",
+        "name"            => "User Timeline (RPG-Plugin)",
         "description"    => "Ermöglicht es Usern eine eigene Timeline im UCP anzulegen, diese wird im Profil ausgegeben.",
         "website"        => "https://github.com/Joenalya",
         "author"        => "Joenalya aka. Anne",
@@ -45,7 +45,7 @@ function rpgtimeline_install()
 	// create settinggroup
 	$setting_group = array(
     	'name' => 'rpgtimelinecp',
-    	'title' => 'Timeline',
+    	'title' => 'User Timeline',
     	'description' => 'Einstellungen für die Timeline.',
     	'disporder' => -1, // The order your setting group will display
     	'isdefault' => 0
